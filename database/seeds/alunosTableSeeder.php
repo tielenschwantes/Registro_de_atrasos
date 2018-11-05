@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Aluno;
+use App\aluno;
 
 class alunosTableSeeder extends Seeder
 {
@@ -12,23 +12,23 @@ class alunosTableSeeder extends Seeder
      */
     public function run()
     {
-        Aluno::create{[
+        Aluno::create([
         	'id' => '1',
         	'nome' => 'Bianca Walbrink',
         	'turma' => '302'
-        	]};
+        	]);
 
-        	Aluno::create{[
+        	Aluno::create([
         	'id' => '2',
         	'nome' => 'Gabrieli Brais',
         	'turma' => '302'
-        	]};
+        	]);
 
-        	Aluno::create{[
+        	Aluno::create([
         	'id' => '3',
         	'nome' => 'Tiélen Schwantes',
         	'turma' => '302'
-        	]};
+        	]);
 
     }
 }
