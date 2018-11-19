@@ -17,12 +17,13 @@ class AddRegistrosTable extends Migration
             $table->increments('id');
             $table->integer('id_aluno')->unsigned();
             $table->string('motivo');
+            $table->string('materia');
             $table->dateTime('datahoraatraso');
             $table->timestamps();
         });
 
         Schema::table('registros', function($table){
-            $table->foreign('id_aluno')->references('id')->on('alunos');
+            $table->foreign('id_aluno')->references('id')->on('User');
         });
     }
 

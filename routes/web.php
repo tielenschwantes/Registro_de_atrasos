@@ -22,4 +22,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/registros', 'RegistroController@store');
 
-Route::get('/registros', 'RegistroController@index')
+Route::get('/registros', 'RegistroController@index');

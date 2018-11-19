@@ -15,7 +15,8 @@ class registrosTableSeeder extends Seeder
         registro::create([
         	'id_aluno' => '1',
         	'motivo' => 'Dormiu',
-        	'datahoraatraso' => '2018-01-01 10:00:00'
+        	'datahoraatraso' => '2018-01-01 10:00:00',
+            'materia' => 'matemática'
         	]);
     }
 }

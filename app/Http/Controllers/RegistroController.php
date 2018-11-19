@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Registro;
+use App\registro;
 use Illuminate\Http\Request;
 use \Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -14,16 +14,18 @@ class RegistroController extends Controller
 			return view('registros.create');
 		}
 
-}
+
 
 public function index()
     {
         if(Auth::check()){
-            $listaRegistros = Registros::where('user_id', Auth::id())->get();
+            $listaRegistros = registro::where('id_aluno', Auth::id())
+                                                                    ->with('aluno')
+                                                                    ->get();
         }else{
-            $listaRegistros = Registro::all();
+            $listaRegistros = registro::all()->with('aluno');
         }
-        return view('registro.list',['listaRegistros' => $listaRegistros]);
+        return view('registros.list',['listaRegistros' => $listaRegistros]);
     }
 
 public function store(Request $request)
@@ -49,11 +51,12 @@ public function store(Request $request)
             ->withInput($request->all);
         }
         //se passou pelas validações, processa e salva no banco...
-        $obj_Registro = new Registro();
+        $obj_Registro = new registro();
         $obj_Registro->motivo =       $request['motivo'];
         $obj_Registro->materia = $request['materia'];
-        $obj_Registro->data = $request['scheduledto'];
-        $obj_Registro->user_id = Auth::id();
+        $obj_Registro->datahoraatraso = \Carbon\Carbon::now();
+        $obj_Registro->id_aluno = Auth::id();
         $obj_Registro->save();
         return redirect('/registros')->with('success', 'Atraso registrado com sucesso!');
     }
+}
